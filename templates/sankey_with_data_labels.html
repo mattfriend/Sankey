@@ -1,0 +1,51 @@
+<html>
+
+<body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <div id="sankey_multiple" style="width: 900px; height: 300px;"></div>
+
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["sankey"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'From');
+            data.addColumn('string', 'To');
+            data.addColumn('number', 'Weight');
+            data.addColumn({ type: 'string', role: 'annotationText' });
+            data.addRows([
+                ['Input A', 'Intermediate B', 380000, "380 GWh"],
+                ['Input B', 'Intermediate A', 38000, "38GWh"],
+                ['Input B', 'Intermediate B', 1000, "1 GWh"],
+                ['Input C', 'Intermediate C', 120000, "120 GWh"],
+                ['Input C', 'Intermediate B', 80000, "80 GWh"],
+                ['Input C', 'Wasted Input C', 5000, "5 GWh"],
+                ['Input D', 'Intermediate C', 3000, "3 GWh"],
+                ['Input E', 'Intermediate B', 1000, "1 GWh"],
+                ['Intermediate C', 'Output A', 50000, "50 GWh"],
+                ['Intermediate C', 'Output B', 2000, "2GWh"],
+                ['Intermediate C', 'Wasted Intermediate C', 70000, "70 GWh"],
+                ['Intermediate B', 'Output C', 100000, "100 GWh"],
+                ['Intermediate B', 'Output D', 105000, "105 GWh"],
+                ['Intermediate B', 'Output E', 200000, "200 GWh"],
+                ['Intermediate B', 'Output F', 50000, "50 GWh"],
+                ['Intermediate B', 'Output B', 4000, "34GWh"],
+                ['Intermediate B', 'Output G', 15000, "15 GWh"],
+                ['Intermediate A', 'Output H', 40000, "40 GWh"],
+            ]);
+
+            // Set chart options
+            var options = {
+                width: 600,
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart_div = document.getElementById('chart_div');
+            var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<html>
+
+<body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <div id="sankey_multiple" style="width: 900px; height: 300px;"></div>
+
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["sankey"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'From');
+            data.addColumn('string', 'To');
+            data.addColumn('number', 'Weight');
+            data.addRows([
+                ['Input A', 'Intermediate B', 380000],
+                ['Input B', 'Intermediate A', 38000],
+                ['Input B', 'Intermediate B', 1000],
+                ['Input C', 'Intermediate C', 120000],
+                ['Input C', 'Intermediate B', 80000],
+                ['Input C', 'Wasted Input C', 5000],
+                ['Input D', 'Intermediate C', 3000],
+                ['Input E', 'Intermediate B', 1000],
+                ['Intermediate C', 'Output A', 50000],
+                ['Intermediate C', 'Output B', 2000],
+                ['Intermediate C', 'Wasted Intermediate C', 70000],
+                ['Intermediate B', 'Output C', 100000],
+                ['Intermediate B', 'Output D', 105000],
+                ['Intermediate B', 'Output E', 200000],
+                ['Intermediate B', 'Output F', 50000],
+                ['Intermediate B', 'Output B', 4000],
+                ['Intermediate B', 'Output G', 15000],
+                ['Intermediate A', 'Output H', 40000],
+            ]);
+
+            // Set chart options
+            var options = {
+                width: 600,
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart_div = document.getElementById('chart_div');
+            var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+
+</html>
